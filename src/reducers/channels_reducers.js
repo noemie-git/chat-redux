@@ -1,12 +1,13 @@
-import { SET_CHANNELS } from '../actions';
+// import { SET_CHANNELS } from '../actions';
 
 export default function (state, action) {
-  if (state === undefined) {
-    return [];
-  }
   switch (action.type) {
-    case SET_CHANNELS:
-      return action.payload;
+    // case SET_CHANNELS:
+    //   return {
+    //     ...state,
+    //     channelList: action.payload
+    //   };
+
     default:
       return state;
   }
