@@ -1,4 +1,4 @@
-export const SET_CHANNELS = 'SET_CHANNELS';
+import { SET_CHANNELS } from '../actions';
 
 export default function (state, action) {
   if (state === undefined) {

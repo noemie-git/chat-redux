@@ -1,4 +1,4 @@
-export const SET_MESSAGES = 'SET_MESSAGES';
+import { SET_MESSAGES } from '../actions';
 
 export default function (state, action) {
   if (state === undefined) {

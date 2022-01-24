@@ -1,4 +1,4 @@
-export const SET_CURRENTUSER = 'SET_CURRENTUSER';
+import { SET_CURRENTUSER } from '../actions';
 
 export default function (state, action) {
   if (state === undefined) {
