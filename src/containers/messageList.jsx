@@ -20,7 +20,7 @@ class MessageList extends Component {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    // { setMessages },
+    { fetchMessages },
     dispatch
   );
 }
