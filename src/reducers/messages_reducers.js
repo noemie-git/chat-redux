@@ -1,0 +1,13 @@
+export const SET_MESSAGES = 'SET_MESSAGES';
+
+export default function (state, action) {
+  if (state === undefined) {
+    return [];
+  }
+  switch (action.type) {
+    case SET_MESSAGES:
+      return action.payload;
+    default:
+      return state;
+  }
+}

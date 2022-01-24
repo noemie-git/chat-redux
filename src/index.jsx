@@ -4,6 +4,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
+import { SET_MESSAGES } from '../actions';
+import { SET_CHANNELS } from '../actions';
+import { SELECT_CHANNEL } from '../actions';
+import { SET_CURRENTUSER } from '../actions';
 
 // internal modules
 import App from './components/app';
@@ -19,7 +23,20 @@ const initialState = {
 };
 
 const reducers = combineReducers({
-  changeMe: (state = null, action) => state
+  export default function(state = null, action) {
+    switch (action.type) {
+      case SET_MESSAGES:
+        return action.payload;
+      case SET_CHANNELS:
+        return action.payload;
+      case SELECT_CHANNEL:
+        return action.payload;
+      case SET_CURRENTUSER:
+        return action.payload;
+      default:
+        return state;
+    }
+  }
 });
 
 // render an instance of the component in the DOM
