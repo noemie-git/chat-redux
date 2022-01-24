@@ -14,12 +14,14 @@ import messagesReducers from "./reducers/messages_reducers";
 import channelsReducers from './reducers/channels_reducers';
 import currentUserReducer from './reducers/currentUser_reducer';
 import selectedChannelReducer from './reducers/selected_channel_reducer';
+import fetchMessageReducer from './reducers/fetch_message_reducer';
+import createMessageReducer from './reducers/create_message_reducer';
 
 // State and reducers
 // eslint-disable-next-line no-unused-vars
 const initialState = {
-  messageList: [],
-  channelList: ["general", "react", "paris"],
+  messages: [],
+  channels: ["general", "react", "paris"],
   currentUser: prompt("Enter your username") || `unnamed user${Math.floor(10 + (Math.random() * 90))}`,
   selectedChannel: 'general'
 };
@@ -28,7 +30,9 @@ const reducers = combineReducers({
   messages: messagesReducers,
   channels: channelsReducers,
   currentUser: currentUserReducer,
-  selectedChannel: selectedChannelReducer
+  selectedChannel: selectedChannelReducer,
+  allMessages: fetchMessageReducer,
+  newMessage: createMessageReducer
 });
 
 const middlewares = applyMiddleware(reduxPromise, logger);

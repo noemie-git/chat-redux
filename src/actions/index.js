@@ -10,8 +10,32 @@ export function fetchMessages(channel) {
 }
 
 export function createMessage(channel, author, content) {
+  const messages = [
+    {
+      author: "anonymous92",
+      content: "Hello world!",
+      created_at: "2017-09-26T23:03:16.365Z"
+    },
+    {
+      author: "anonymous77",
+      content: "My name is anonymous77",
+      created_at: "2017-09-26T23:03:21.194Z"
+    }
+  ];
+  const newMessage = messages.slice(0);
+  newMessage.push({ channel, author, content });
+
+  const newPromise = fetch(`https://wagon-chat.herokuapp.com/${channel}/messages`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newMessage)
+  }).then(r => r.json());
+
   return {
-    type: SET_CURRENTUSER,
-    payload: currentUser
+    type: 'ADD_MESSAGE',
+    payload: newPromise
   };
 }
