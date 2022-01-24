@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { setMessages } from '../actions';
+import { fetchMessages } from '../actions';
 import Message from '../components/message';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class MessageList extends Component {
   componentWillMount() {
-    fetchMessages(channel);
-    this.props.setMessages();
+    fetchMessages(this.props.selectedChannel);
+    // this.props.setMessages();
   }
 
   render() {

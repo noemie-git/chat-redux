@@ -25,8 +25,8 @@ const initialState = {
 };
 
 const reducers = combineReducers({
-  messageList: messagesReducers,
-  channelList: channelsReducers,
+  messages: messagesReducers,
+  channels: channelsReducers,
   currentUser: currentUserReducer,
   selectedChannel: selectedChannelReducer
 });
