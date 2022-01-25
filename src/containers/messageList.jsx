@@ -16,9 +16,16 @@ class MessageList extends Component {
 
   render() {
     return (
-      <div>
-        <div> {this.props.selectedChannel}
-          <Message />
+      <div className="message-list">
+        <div className="channel">
+          <span>
+            Channel #{this.props.selectedChannel}
+          </span>
+          <div className="message">
+            {this.props.messages.map((message) => {
+              return <Message key={message.id} message={message} />;
+            })}
+          </div>
         </div>
         <MessageForm />
       </div >
