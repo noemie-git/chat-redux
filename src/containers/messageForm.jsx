@@ -23,16 +23,18 @@ class MessageForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="label">Type your message here...
+      <form onSubmit={this.handleSubmit} className="simple_form send">
+        <div className="send-form-control form-group">
           <input
             type="text"
-            className="form-control"
+            className="form-control string required"
             value={this.state.value}
             onChange={this.handleChange}
           />
-        </label>
-        <button type="submit" className="btn btn-danger">Send</button>
+          <button type="submit" className="btn btn-flat">
+            <i className="fas fa-paper-plane" /> Send
+          </button>
+        </div>
       </form>
     );
   }
