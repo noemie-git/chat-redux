@@ -1,22 +1,35 @@
 /* eslint-disable react/prefer-stateless-function */
 // eslint-disable-next-line no-unused-vars
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { createMessage } from '../actions';
+import MessageForm from '../containers/messageForm';
 
 class Message extends Component {
+  componentWillMount() {
+    createMessage(this.props.newMessage);
+    // this.props.setMessages();
+  }
+
   render() {
     return (
-      [{
-        author: "anonymous92",
-        content: "Hello world!",
-        created_at: "2017-09-26T23:03:16.365Z"
-      },
-      {
-        author: "anonymous77",
-        content: "My name is anonymous77",
-        created_at: "2017-09-26T23:03:21.194Z"
-      }]
+      <MessageForm {...this.props.selectedChannel}{...this.handleSubmit.state.value}{...this.handleChange.state.value} />
     );
   }
 }
 
-export default Message;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    { createMessage },
+    dispatch
+  );
+}
+
+function mapStateToProps(state) {
+  return {
+    message: state.message
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Message);
