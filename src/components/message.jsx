@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createMessage } from '../actions';
-import MessageForm from '../containers/messageForm';
 
 class Message extends Component {
   componentWillMount() {
@@ -14,7 +13,9 @@ class Message extends Component {
 
   render() {
     return (
-      <MessageForm {...this.props.selectedChannel}{...this.handleSubmit.state.value}{...this.handleChange.state.value} />
+      <div>
+        {this.props.author}
+      </div>
     );
   }
 }

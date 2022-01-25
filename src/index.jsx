@@ -40,7 +40,12 @@ const middlewares = applyMiddleware(reduxPromise, logger);
 // render an instance of the component in the DOM
 ReactDOM.render(
   <Provider store={createStore(reducers, {}, middlewares)}>
-    <App />
+    <App
+      messages={initialState.messages}
+      channels={initialState.channels}
+      currentUser={initialState.currentUser}
+      selectedChannel={initialState.selectedChannel}
+    />
   </Provider>,
   document.getElementById('root')
 );

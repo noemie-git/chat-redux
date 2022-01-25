@@ -2,10 +2,10 @@ import React from 'react';
 import MessageForm from '../containers/messageForm';
 import MessageList from '../containers/messageList';
 
-const App = () => {
+const App = (props) => {
   return (
     <div className="app">
-      <MessageList />
+      <MessageList messages={props.messages} />
       <MessageForm />
     </div>
   );
