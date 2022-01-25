@@ -17,7 +17,7 @@ class MessageList extends Component {
   render() {
     return (
       <div className="message-list">
-        <div className="channel">
+        <div className="channel-name">
           <span>
             Channel #{this.props.selectedChannel}
           </span>
