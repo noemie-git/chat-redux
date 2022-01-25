@@ -1,36 +1,24 @@
-/* eslint-disable react/prefer-stateless-function */
-// eslint-disable-next-line no-unused-vars
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { createMessage } from '../actions';
+import React from 'react';
 
-class Message extends Component {
-  componentWillMount() {
-    createMessage(this.props.newMessage);
-    // this.props.setMessages();
-  }
-
-  render() {
-    return (
-      <div>
-        {this.props.author}
-      </div>
-    );
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(
-    { createMessage },
-    dispatch
+const Message = (props) => {
+  // eslint-disable-next-line camelcase
+  const { created_at, author, content } = props.message;
+  const time = new Date(created_at).toLocaleTimeString();
+  return (
+    <div className="message-container">
+      <i className="author">
+        <span>
+          {author}
+        </span>
+        <small>
+          {time}
+        </small>
+      </i>
+      <p className="content">
+        {content}
+      </p>
+    </div>
   );
-}
+};
 
-function mapStateToProps(state) {
-  return {
-    message: state.message
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Message);
+export default Message;

@@ -11,11 +11,9 @@ import reduxPromise from 'redux-promise';
 import App from './components/app';
 import '../assets/stylesheets/application.scss';
 import messagesReducers from "./reducers/messages_reducers";
-import channelsReducers from './reducers/channels_reducers';
-import currentUserReducer from './reducers/currentUser_reducer';
 import selectedChannelReducer from './reducers/selected_channel_reducer';
-import fetchMessageReducer from './reducers/fetch_message_reducer';
-import createMessageReducer from './reducers/create_message_reducer';
+
+const identityReducer = (state = null) => state;
 
 // State and reducers
 // eslint-disable-next-line no-unused-vars
@@ -28,24 +26,17 @@ const initialState = {
 
 const reducers = combineReducers({
   messages: messagesReducers,
-  channels: channelsReducers,
-  currentUser: currentUserReducer,
+  channels: identityReducer,
+  currentUser: identityReducer,
   selectedChannel: selectedChannelReducer,
-  allMessages: fetchMessageReducer,
-  newMessage: createMessageReducer
 });
 
 const middlewares = applyMiddleware(reduxPromise, logger);
 
 // render an instance of the component in the DOM
 ReactDOM.render(
-  <Provider store={createStore(reducers, {}, middlewares)}>
-    <App
-      messages={initialState.messages}
-      channels={initialState.channels}
-      currentUser={initialState.currentUser}
-      selectedChannel={initialState.selectedChannel}
-    />
+  <Provider store={createStore(reducers, initialState, middlewares)}>
+    <App />
   </Provider>,
   document.getElementById('root')
 );

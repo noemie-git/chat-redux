@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { createMessage } from '../actions';
 
 class MessageForm extends Component {
   constructor(props) {
@@ -13,16 +16,21 @@ class MessageForm extends Component {
   }
 
   handleSubmit(event) {
-    // eslint-disable-next-line no-alert
-    alert(`Your message was sent: ${this.state.value}`);
     event.preventDefault();
+    this.props.createMessage(this.props.selectedChannel, this.props.currentUser, this.state.value);
+    this.setState({ value: "" });
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <label htmlFor="label">Type your message here...
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          <input
+            type="text"
+            className="form-control"
+            value={this.state.value}
+            onChange={this.handleChange}
+          />
         </label>
         <button type="submit" className="btn btn-danger">Send</button>
       </form>
@@ -30,4 +38,15 @@ class MessageForm extends Component {
   }
 }
 
-export default MessageForm;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ createMessage }, dispatch);
+}
+
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser,
+    selectedChannel: state.selectedChannel
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageForm);

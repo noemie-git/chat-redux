@@ -1,31 +1,22 @@
 // TODO: add and export your own actions
+export const FETCH_MESSAGES = "FETCH_MESSAGES";
+export const CREATE_MESSAGE = "CREATE_MESSAGE";
+export const CHANNEL_SELECTED = "CHANNEL_SELECTED";
+
 export function fetchMessages(channel) {
   const promise = fetch(`https://wagon-chat.herokuapp.com/${channel}/messages`)
     .then(response => response.json());
 
   return {
-    type: 'SET_MESSAGES',
+    type: FETCH_MESSAGES,
     payload: promise
   };
 }
 
 export function createMessage(channel, author, content) {
-  const messages = [
-    {
-      author: "anonymous92",
-      content: "Hello world!",
-      created_at: "2017-09-26T23:03:16.365Z"
-    },
-    {
-      author: "anonymous77",
-      content: "My name is anonymous77",
-      created_at: "2017-09-26T23:03:21.194Z"
-    }
-  ];
-  const newMessage = messages.slice(0);
-  newMessage.push({ channel, author, content });
+  const newMessage = { author, content };
 
-  const newPromise = fetch(`https://wagon-chat.herokuapp.com/${channel}/messages`, {
+  const promise = fetch(`https://wagon-chat.herokuapp.com/${channel}/messages`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -35,7 +26,14 @@ export function createMessage(channel, author, content) {
   }).then(r => r.json());
 
   return {
-    type: 'ADD_MESSAGE',
-    payload: newPromise
+    type: CREATE_MESSAGE,
+    payload: promise
+  };
+}
+
+export function selectChannel(channel) {
+  return {
+    type: CHANNEL_SELECTED,
+    payload: channel
   };
 }
